@@ -32,16 +32,16 @@ function solution(friends, gifts) {
   for (let i = 0; i < friends.length; i++) {
     for (let j = i + 1; j < friends.length; j++) {
       const [a, b] = [friends[i], friends[j]];
-      const [aToB, bToA] = [giftLog[a][b] || 0, giftLog[b][a] || 0];
+      const [AtoB, BtoA] = [giftLog[a][b] || 0, giftLog[b][a] || 0];
 
-      if (aToB !== bToA) {
-        nextMonth[aToB > bToA ? a : b]++;
+      if (AtoB !== BtoA) {
+        nextMonth[AtoB > BtoA ? a : b]++;
       } else if (stats[a].index !== stats[b].index) {
         nextMonth[stats[a].index > stats[b].index ? a : b]++;
       }
+      // 선물도 주고받지 않고, 선물 지수도 같으으면 아무것도 받지 않음
     }
   }
-
   return Math.max(...Object.values(nextMonth));
 }
 
